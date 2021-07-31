@@ -2,56 +2,112 @@ import React, { useState } from "react";
 
 const Modal = () => {
   const [show, setShow] = useState(false);
-  const handleClick = () => {
-    setShow(true);
-  };
+  const [hide, setHide] = useState(false);
+  const [isChecked, setIsChecked] = useState("");
+
   return (
     <div className="bg-white rounded-2xl  shadow-lg w-auto h-auto p-16 m-4">
-      <form className="flex flex-col items-center justify-start">
+      <form className="flex flex-col items-center justify-start w-full">
         <h3 className="text-3xl font-bold mb-8">
           Select a reason to end a class
         </h3>
-        <div className="w-full">
-          <div className="px-4 pb-4">
-            <input type="radio" />
-            <label className="m-2 text-xl">Class completed</label>
-          </div>
-          <div className="px-4 pb-4">
-            <input type="radio" onClick={handleClick} />
-            <label className="m-2 text-xl">Class interrupted/aborted</label>
-          </div>
+        <div className="w-full flex flex-col justify-evenly">
+          <label className="m-2 text-xl">
+            <input
+              className="m-2"
+              type="radio"
+              onChange={(e) => setIsChecked(e.target.value)}
+              checked={isChecked === "Class completed"}
+              value="Class completed"
+              onClick={() => setShow(false)}
+            />
+            Class completed
+          </label>
+
+          <label className="m-2 text-xl">
+            <input
+              className="m-2"
+              type="radio"
+              onClick={() => setShow(true)}
+              onChange={(e) => setIsChecked(e.target.value)}
+              checked={isChecked === "Class interrupted/aborted"}
+              value="Class interrupted/aborted"
+            />
+            Class interrupted/aborted
+          </label>
         </div>
         {show && (
-          <div className="delay-700">
-            <div className="px-4 pb-4">
-              <input type="radio" />
-              <label className="m-2">
-                Student didn't show up for the class.
-              </label>
-            </div>
-            <div className="px-4 pb-4">
-              <input type="radio" />
-              <label className="m-2">Student didn't show any interest.</label>
-            </div>
-            <div className="px-4 pb-4">
-              <input type="radio" />
-              <label className="m-2">Student got disconnected</label>
-            </div>
-            <div className="px-4 pb-4">
-              <input type="radio" />
-              <label className="m-2">I got disconnected</label>
-            </div>
-            <div className="px-4 pb-4">
-              <input type="radio" />
-              <label className="m-2">Other reason</label>
-            </div>
-            <textarea
-              type="text"
-              className="w-5/6 h-20 border-current border-2 p-1"
-              placeholder="Type here..."
-            ></textarea>
+          <div className="delay-700 flex flex-col justify-evenly">
+            <label className="m-2">
+              <input
+                className="m-2"
+                type="radio"
+                onChange={(e) => setIsChecked(e.target.value)}
+                checked={isChecked === "Student didn't show up for the class."}
+                value="Student didn't show up for the class."
+                onClick={() => setHide(false)}
+              />
+              Student didn't show up for the class.
+            </label>
+
+            <label className="m-2">
+              <input
+                className="m-2"
+                type="radio"
+                onChange={(e) => setIsChecked(e.target.value)}
+                checked={isChecked === "Student didn't show any interest."}
+                value="Student didn't show any interest."
+                onClick={() => setHide(false)}
+              />
+              Student didn't show any interest.
+            </label>
+
+            <label className="m-2">
+              <input
+                className="m-2"
+                type="radio"
+                onChange={(e) => setIsChecked(e.target.value)}
+                checked={isChecked === "Student got disconnected."}
+                value="Student got disconnected."
+                onClick={() => setHide(false)}
+              />
+              Student got disconnected.
+            </label>
+
+            <label className="m-2">
+              <input
+                className="m-2"
+                type="radio"
+                onChange={(e) => setIsChecked(e.target.value)}
+                checked={isChecked === "I got disconnected."}
+                value="I got disconnected."
+                onClick={() => setHide(false)}
+              />
+              I got disconnected.
+            </label>
+
+            <label className="m-2">
+              <input
+                className="m-2"
+                type="radio"
+                onClick={() => setHide(true)}
+                onChange={(e) => setIsChecked(e.target.value)}
+                checked={isChecked === "Other reason"}
+                value="Other reason"
+              />
+              Other reason
+            </label>
+
+            {hide && (
+              <textarea
+                type="text"
+                placeholder="Type here..."
+                className="w-full h-full border-current border-2 p-1"
+              />
+            )}
           </div>
         )}
+
         <div>
           <button
             type="button"
