@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from "react";
 
-const Timer = () => {
-    const [minutes, setMinutes] = useState(9);
-  const [seconds, setSeconds] = useState(60);
+const Timer = ({onCancel}) => {
+ 
+  const [minutes, setMinutes] = useState(10);
+  const [seconds, setSeconds] = useState(0);
 
-   useEffect(() => {
-     const timer = minutes > 0 && setTimeout(() => setMinutes(minutes - 1), 60000);
-     return () => {
-       clearTimeout(timer);
-     };
-   }, [minutes]);
   useEffect(() => {
-    const timerId = seconds > 0 && setTimeout(() => setSeconds(seconds - 1), 1000);
-  return () => {
-    clearTimeout(timerId);
-  };
-  }, [minutes,seconds]);
-  return <React.Fragment>{minutes}:{seconds}</React.Fragment>;
+    let myInterval = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        if (minutes === 0) {
+          clearInterval(myInterval);
+        } else {
+          setMinutes(minutes - 1);
+          setSeconds(59);
+        }
+      }
+    }, 1000);
+    return () => {
+      clearInterval(myInterval);
+      onCancel(myInterval)
+    };
+  });
+
+  return (
+    <div>
+      {minutes === 0 && seconds === 0 ? null : (
+        <h1>
+          {" "}
+          {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+        </h1>
+      )}
+    </div>
+  );
 };
 
 export default Timer;

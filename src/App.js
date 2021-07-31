@@ -6,7 +6,7 @@ import Post from "./Posts/Post";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App w-screen h-screen">
         <Route path="/" exact>
           <NavBar />
         </Route>
