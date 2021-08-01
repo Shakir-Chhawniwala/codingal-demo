@@ -5,13 +5,10 @@ const Modal = ({onCancel, stopHandleClick}) => {
   const [hide, setHide] = useState(false);
   const [isChecked, setIsChecked] = useState("");
 
-<<<<<<< HEAD
   const handleClick = () => {
     stopHandleClick()
   }
 
-=======
->>>>>>> 19662c10e84557e2a02a8d1d1bba9cfe678ff1f0
   return (
     <div className="bg-white rounded-2xl  shadow-lg w-auto h-auto p-16 m-4">
       <form className="flex flex-col items-center justify-start w-full">
@@ -44,11 +41,7 @@ const Modal = ({onCancel, stopHandleClick}) => {
           </label>
         </div>
         {show && (
-<<<<<<< HEAD
           <div className="transition-transform flex flex-col justify-evenly">
-=======
-          <div className="delay-700 flex flex-col justify-evenly">
->>>>>>> 19662c10e84557e2a02a8d1d1bba9cfe678ff1f0
             <label className="m-2">
               <input
                 className="m-2"
@@ -113,11 +106,7 @@ const Modal = ({onCancel, stopHandleClick}) => {
               <textarea
                 type="text"
                 placeholder="Type here..."
-<<<<<<< HEAD
                 className="w-full h-full border-current border-2 p-1 transition-transform"
-=======
-                className="w-full h-full border-current border-2 p-1"
->>>>>>> 19662c10e84557e2a02a8d1d1bba9cfe678ff1f0
               />
             )}
           </div>
